@@ -50,7 +50,8 @@ public class Consumable extends Item {
     public Consumable(Consumable src)
     {
         super(src.name, true);
-
+        this.effect = src.effect;
+        this.uses   = src.uses;
         // Copy src.effect and src.uses
     }
 
@@ -101,6 +102,8 @@ public class Consumable extends Item {
     public void read(Scanner snr)
     {
         super.name = snr.next();
+        this.effect = snr.next();
+        this.uses   = snr.nextInt();
         // Refer to the hints in Armour.read
     }
 
@@ -111,15 +114,22 @@ public class Consumable extends Item {
     public Item clone()
     {
         // Replace the next line
-        return new Consumable();
+        return new Consumable(this);
     }
 
     /**
      * *Print* the Consumable Item.
      */
     @Override
-    public String toString()
-    {
-        return String.format("  Use the hint in Armour.toString%n");
+    public String toString() {
+        return String.join(
+                System.lineSeparator(),
+                String.format("  Nme: %s", super.getName()),
+                String.format("  Eft: %s", this.effect),
+                String.format("  Use: %d", this.uses),
+               // String.format("  Quantity: %d", super.)
+                ""
+
+        );
     }
 }

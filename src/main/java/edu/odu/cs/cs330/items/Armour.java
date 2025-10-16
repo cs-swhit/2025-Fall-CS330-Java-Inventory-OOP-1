@@ -44,7 +44,14 @@ public class Armour extends Equippable {
     {
         super(src.name);
 
+        stackable = false;
         this.durability = src.durability;
+        this.defense = src.defense;
+        this.material = src.material;
+        this.element = src.element;
+        this.modifierLevel = src.modifierLevel;
+        this.modifier =  src.modifier;
+
         // Copt the remaining fields (data members)
     }
 
@@ -75,7 +82,12 @@ public class Armour extends Equippable {
     public void read(Scanner snr)
     {
         super.name = snr.next();
-
+        super.material = snr.next();
+        super.durability = snr.nextInt();
+        this.defense = snr.nextInt();
+        this.modifier = snr.next();
+        super.modifierLevel = snr.nextInt();
+        super.element = snr.next();
         // Use snr.next() and snr.nextInt() to read in values remaining fields
 
     }
@@ -87,7 +99,7 @@ public class Armour extends Equippable {
     public Item clone()
     {
         // Replace the return
-        return new Armour();
+        return new Armour(this);
     }
 
     /**
@@ -100,7 +112,18 @@ public class Armour extends Equippable {
         return String.join(
             System.lineSeparator(),
             String.format("  Nme: %s", super.getName()),
-            ""
+                //System.lineSeparator(),
+                String.format("  Dur: %s", super.getDurability()),
+                //System.lineSeparator(),
+                String.format("  Def: %s", this.getDefense()),
+                //System.lineSeparator(),
+                String.format("  Mtl: %s",super.getMaterial()),
+                //System.lineSeparator(),
+                String.format("  Mdr: %s (Lvl %d)",super.getModifier(),super.getModifierLevel()),
+                //System.lineSeparator(),
+                String.format("  Emt: %s",super.getElement()),
+                ""
+
         );
     }
 }
